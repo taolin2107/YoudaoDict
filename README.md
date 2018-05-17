@@ -7,6 +7,14 @@
 * 去 [Chrome 官方商店](https://chrome.google.com/webstore/detail/youdao-dict/geboigdomoihijcamklnhlcgnnpdgkmg)安装。
 * 下载 [crx 文件](https://github.com/youngdze/YoudaoDict/releases)安装。
 
+## 申请有道智云app key
+
+1. 去[有道智云](http://ai.youdao.com/index.s) -> 自然语言翻译 -> 翻译实例 -> 创建实例 -> 文本翻译服务
+
+2. 去[有道智云](http://ai.youdao.com/index.s) -> 应用管理 -> 我的应用 -> 创建应用 -> 绑定服务 -> 选择步骤1创建的文本翻译服务 -> 获取此应用的`应用ID`和`应用密钥`
+
+3. 将步骤2获取的`应用ID`和`应用密钥`，填入到`src/script/util/youdao.js`中的`appkey`和`appsecret`
+
 ## 开发
 
 ```shell
