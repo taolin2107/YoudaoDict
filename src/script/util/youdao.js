@@ -1,9 +1,16 @@
 "use strict";
 
+var md5 = require('./md5');
+
 class Youdao {
   constructor(from, key, resType, query) {
     [this.from, this.key, this.resType, this.query] = [from, key, resType, query];
-    this.requestUrl = `https://fanyi.youdao.com/openapi.do?keyfrom=${this.from}&key=${this.key}&type=data&doctype=${this.resType}&version=1.1&q=`;
+    // appkey和appsecret需要去有道智云申请，http://ai.youdao.com/index.s
+    let appkey = 'your-app-key';
+    let appsecret = 'your-app-secret';
+    let salt = Date.now() + '';
+    let sign = md5(appkey + query + salt + appsecret);
+    this.requestUrl = `https://openapi.youdao.com/api?from=auto&to=auto&appKey=${appkey}&salt=${salt}&sign=${sign}&q=`;
   }
 
   isChinese(str) {
@@ -82,7 +89,7 @@ class Youdao {
           if (res.ok) {
             res.json().then(data => {
               let result;
-              if (data.errorCode !== 0) {
+              if (data.errorCode !== '0') {
                 reject('Query failed');
                 return;
               }
