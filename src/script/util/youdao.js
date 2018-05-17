@@ -38,11 +38,11 @@ class Youdao {
       explains = res.translation[0];
     } else {
       explains = res.basic.explains;
-      res.basic.phonetic && (pronoun = res.basic.phonetic.split(';')[0]);
-      !this.isChinese(word) && (wav = `https://dict.youdao.com/dictvoice?audio=${word}&type=2`);
-      res.web && (relate = res.web);
+      pronoun = res.basic.phonetic;
     }
-    more = `http://dict.youdao.com/search?q=${res.query}`;
+    wav = res.speakUrl;
+    relate = res.web;
+    res.webdict && (more = res.webdict.url);
 
     return {word, wav, explains, pronoun, relate, more};
   }
